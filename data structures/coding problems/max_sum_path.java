@@ -20,7 +20,7 @@ class BinaryTree
         return new Node(val);
     }
 
-    public void maxSum(Node root,int k,int sum)
+    public void maxSum(Node root,int sum)
     {
         if(root==null)
         return;
@@ -31,8 +31,8 @@ class BinaryTree
             return; 
         }
 
-        this.maxSum(root.left, k,sum + root.data);
-        this.maxSum(root.right, k, sum + root.data);
+        this.maxSum(root.left, sum + root.data);
+        this.maxSum(root.right, sum + root.data);
     }
 
 }
@@ -49,7 +49,7 @@ public class max_sum_path
         root.left.left = tree.createNewNode(-5);
         root.right.left = tree.createNewNode(4);
 
-        tree.maxSum(root,-1,0);
+        tree.maxSum(root,0);
 
         System.out.print("\nsum: " + tree.maxsum + "\n");
         
