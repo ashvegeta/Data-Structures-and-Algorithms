@@ -1,4 +1,4 @@
 # Data-Structures-and-Algorithms
 
 1. implementation of basic data structures and algorithms
-2.  questions on DSA solved
+2.  questions on DSA and number theory solved
