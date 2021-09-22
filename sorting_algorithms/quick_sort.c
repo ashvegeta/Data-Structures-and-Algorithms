@@ -17,18 +17,12 @@ int partition(int* arr,int start,int end)
    {
      if(arr[i]<=pivot)
      {
-       temp = arr[i];
-       arr[i] = arr[pidx];
-       arr[pidx] = temp;
-       //swap(&arr[i],&arr[pidx]);
+       swap(&arr[i],&arr[pidx]);
        pidx++;      
      }
    }
 
-    temp = arr[pidx];
-    arr[pidx] = arr[end];
-    arr[end] = temp;
-   //swap(&arr[pidx],&arr[end]);
+   swap(&arr[pidx],&arr[end]);
 
    return pidx;
 }
