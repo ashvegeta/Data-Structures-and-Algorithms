@@ -49,16 +49,6 @@ class BinaryTree
         }
     }
 
-    boolean find(ArrayList<Integer> arr, int val)
-    {
-        for (Integer i : arr)
-        {
-            if(i == val) return true;
-        }
-
-        return false;
-    }
-
     void printCousins(Node root,int element)
     {   
         if(root==null) return;
@@ -111,6 +101,64 @@ class BinaryTree
         System.out.println("\nelement not found !! \n");
     }
 
+    Node getParent(Node root , int val)
+    {
+        if(root==null || root.data==val) return null;
+
+        Queue<Node> q = new LinkedList<Node>();
+        q.add(root);
+
+        Node curr_node = null;
+
+        while(q.size()!=0)
+        {
+            curr_node = q.remove();
+
+            if(curr_node.left!=null)
+            {
+                if(curr_node.left.data == val ) return curr_node;
+                q.add(curr_node.left);
+            }
+
+            if(curr_node.right!=null)
+            {
+                if(curr_node.right.data == val ) return curr_node;
+                q.add(curr_node.right);
+            }
+        }
+
+        return null;
+    }
+
+    Node getSibling(Node root , int val)
+    {
+        if(root==null || root.data==val) return null;
+
+        Queue<Node> q = new LinkedList<Node>();
+        q.add(root);
+
+        Node curr_node = null;
+
+        while(q.size()!=0)
+        {
+            curr_node = q.remove();
+
+            if(curr_node.left!=null)
+            {
+                if(curr_node.left.data == val ) return curr_node.right;
+                q.add(curr_node.left);
+            }
+
+            if(curr_node.right!=null)
+            {
+                if(curr_node.right.data == val ) return curr_node.left;
+                q.add(curr_node.right);
+            }
+        }
+
+        return null;
+    }
+
 
 }
 
@@ -128,8 +176,24 @@ public class relation_between_nodes
         root.right.right = tree.createNewNode(5);
         root.right.left = tree.createNewNode(6);
 
+        // 1. print tree
         tree.printTree(root);
 
+        // 2. print cousins
         tree.printCousins(root, 3);
+    
+        // 3. print parent of an element
+        Node parent = tree.getParent(root,4);
+
+        if(parent!=null) System.out.println("\nparent element : " + parent.data + "\n\n");
+
+        else System.out.println("\nelement or parent doesn't exist \n\n");
+
+        // 3. print sibling of an element
+        Node sibling = tree.getSibling(root,6);
+
+        if(sibling!=null) System.out.println("\nsibling element : " + sibling.data + "\n\n");
+
+        else System.out.println("\nelement or sibling doesn't exist\n\n");
     }    
 }
